@@ -110,6 +110,7 @@ Game.prototype.handleDrop = function(event, ui) {
 Game.prototype.checkSolved = function() {
 	if (this.towers[this.towers.length - 1].getDisks().length == this.disks.length) {
 		alert(VICTORY_MESSAGE);
+		$("#startOver").click();
 	}
 }
 

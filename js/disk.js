@@ -52,6 +52,8 @@ Disk.prototype.loadImage = function(event) {
     ctx.drawImage(img.get(0), 0, 0, this.width, this.height);
 	ctx.font = this.fontSize + "px " + this.fontFace;
 	ctx.strokeText(this.num + 1, (this.width - this.fontSize) / 2 + 2, (this.height + this.fontSize) / 2);
+	ctx.strokeStyle = "#000000";
+	ctx.strokeRect(0, 0, this.width, this.height);
 }
 
 Disk.prototype.setDraggable = function(enabled) {
