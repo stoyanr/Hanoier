@@ -1,3 +1,19 @@
+/*
+ * $Id: $
+ *
+ * Copyright (C) 2012 Stoyan Rachev (stoyanr@gmail.com)
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2, or (at your option) any
+ * later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ */
+
 function Tower(num, width, height, xwidth, dropHandler) {
 	this.num = num;
 	this.width = width;
@@ -44,7 +60,7 @@ Tower.prototype.loadImage = function(event) {
 	var elem = this.getElement();
 	var ctx = elem.get(0).getContext("2d");
 	var img = $(event.target);
-    ctx.drawImage(img.get(0), (this.width - this.xwidth) / 2, 0, this.xwidth, this.height - this.xwidth);
+	ctx.drawImage(img.get(0), (this.width - this.xwidth) / 2, 0, this.xwidth, this.height - this.xwidth);
 	ctx.strokeRect((this.width - this.xwidth) / 2, 0, this.xwidth - 1, this.height - this.xwidth - 1);
 }
 
