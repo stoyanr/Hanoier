@@ -1,3 +1,19 @@
+/*
+ * $Id: $
+ *
+ * Copyright (C) 2012 Stoyan Rachev (stoyanr@gmail.com)
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2, or (at your option) any
+ * later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ */
+ 
 function Disk(num, width, height, fontSize, fontFace, dragHandler) {
 	this.num = num;
 	this.width = width;
@@ -49,7 +65,7 @@ Disk.prototype.loadImage = function(event) {
 	var elem = this.getElement();
 	var ctx = elem.get(0).getContext("2d");
 	var img = $(event.target);
-    ctx.drawImage(img.get(0), 0, 0, this.width, this.height);
+	ctx.drawImage(img.get(0), 0, 0, this.width, this.height);
 	ctx.font = this.fontSize + "px " + this.fontFace;
 	ctx.strokeText(this.num + 1, (this.width - this.fontSize) / 2 + 2, (this.height + this.fontSize) / 2);
 	ctx.strokeStyle = "#000000";
