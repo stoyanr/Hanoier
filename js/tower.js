@@ -1,10 +1,8 @@
-function Tower(num, width, height, offset, xwidth, color, dropHandler) {
+function Tower(num, width, height, xwidth, dropHandler) {
 	this.num = num;
 	this.width = width;
 	this.height = height;
-	this.offset = offset;
 	this.xwidth = xwidth;
-	this.color = color;
 	this.dropHandler = dropHandler;
 	this.disks = [];
 }
@@ -21,8 +19,16 @@ Tower.prototype.getElement = function() {
 	return $("#tower" + this.num);
 }
 
+Tower.prototype.getImageElement = function() {
+	return $("#towerimg");
+}
+
 Tower.prototype.createElement = function() {
 	return $("<canvas class='tower' id='tower" + this.num + "' width='" + this.width + "' height='" + this.height + "' />");
+}
+
+Tower.prototype.createImageElement = function() {
+	return $("<img id='towerimg' src='img/tower.gif' />");
 }
 
 Tower.prototype.init = function() {
@@ -31,12 +37,15 @@ Tower.prototype.init = function() {
 }
 
 Tower.prototype.draw = function() {
+	this.getImageElement().load(this.loadImage.bind(this));
+}
+
+Tower.prototype.loadImage = function(event) {
 	var elem = this.getElement();
-	elem.offset({ top : this.offset, left : this.offset + this.num * (this.width + 2) });
-	var ctx = elem.get(0).getContext("2d");  
-	ctx.fillStyle = this.color;
-	ctx.fillRect((this.width - this.xwidth) / 2, 0, this.xwidth, this.height - this.xwidth);
-	ctx.fillRect(0, this.height - this.xwidth, this.width, this.xwidth);
+	var ctx = elem.get(0).getContext("2d");
+	var img = $(event.target);
+    ctx.drawImage(img.get(0), (this.width - this.xwidth) / 2, 0, this.xwidth, this.height - this.xwidth);
+	ctx.strokeRect((this.width - this.xwidth) / 2, 0, this.xwidth - 1, this.height - this.xwidth - 1);
 }
 
 Tower.prototype.setDroppable = function() {
@@ -75,15 +84,17 @@ Tower.prototype.updateDraggableDisks = function() {
 	}
 }
 
-Tower.prototype.calcOffset = function(num, height) {
-	var elem = this.getElement();
-	var result = -this.xwidth;
+Tower.prototype.calcDiskTop = function(num, height) {
+	var result = this.height - this.xwidth;
 	for (var i = 0; i < this.disks.length; i++) {
-		var numx = this.disks[i].getNum();
-		result -= (num != numx)? height : height / 2;
-		if (num == numx) {
+		result -= height;
+		if (num == this.disks[i].getNum()) {
 			break;
 		}
 	}
 	return result;
+}
+
+Tower.prototype.calcDiskLeft = function(width) {
+	return this.width * this.num + (this.width - width) / 2;
 }

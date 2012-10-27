@@ -1,7 +1,24 @@
-.horizontal_line {
-	border-bottom: 5px solid black;
-	width: 200px;
+#background {
+	margin-left:auto;
+	margin-right:auto;
+	background-image:url('../img/background.jpg');
+	width:720;
+	height:300;
 }
 
-.vertical_line {
+#fill {
+	width:720;
+	height:20;
+}
+
+#game {
+	width:720;
+	height:280;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: bold;
+	margin: 10px 0px 10px;
+	text-align: center;
 }
