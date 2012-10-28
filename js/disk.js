@@ -58,7 +58,7 @@ Disk.prototype.init = function() {
 }
 
 Disk.prototype.draw = function() {
-	this.getImageElement().load(this.loadImage.bind(this));
+	this.getImageElement().load($.proxy(this.loadImage, this));
 }
 
 Disk.prototype.loadImage = function(event) {
@@ -74,10 +74,13 @@ Disk.prototype.loadImage = function(event) {
 
 Disk.prototype.setDraggable = function(enabled) {
 	var elem = this.getElement();
-	if (enabled)
+	if (enabled) {
 		elem.draggable({ drag: this.dragHandler });
-	else
-		elem.draggable("destroy");
+	} else {
+		if (elem.hasClass("ui-draggable")) {
+			elem.draggable("destroy");
+		}
+	}
 }
 
 Disk.prototype.setDraggableRevert = function(enabled) {

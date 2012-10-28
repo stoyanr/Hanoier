@@ -58,7 +58,7 @@ Game.prototype.clean = function() {
 
 Game.prototype.createTowers = function() {
 	for (var i = 0; i < NUM_TOWERS; i++) {
-		var tower = new Tower(i, TOWER_WIDTH, TOWER_HEIGHT, TOWER_XWIDTH, this.handleDrop.bind(this));
+		var tower = new Tower(i, TOWER_WIDTH, TOWER_HEIGHT, TOWER_XWIDTH, $.proxy(this.handleDrop, this));
 		this.towers.push(tower);
 		$("#game").append(tower.createElement());
 	}
@@ -73,7 +73,7 @@ Game.prototype.initTowers = function() {
 
 Game.prototype.createDisks = function() {
 	for (var i = 0; i < this.numDisks; i++) {
-		var disk = new Disk(i, DISK_WIDTHS[i], DISK_HEIGHT, FONT_SIZE, FONT_FACE, this.handleDrag.bind(this))
+		var disk = new Disk(i, DISK_WIDTHS[i], DISK_HEIGHT, FONT_SIZE, FONT_FACE, $.proxy(this.handleDrag, this));
 		this.disks.push(disk);
 		$("#game").append(disk.createElement());
 		$("#images").append(disk.createImageElement());
@@ -107,16 +107,18 @@ Game.prototype.handleDrag = function(event, ui) {
 }
 
 Game.prototype.handleDrop = function(event, ui) {
-	this.moves++;
-	$("#moves").text(this.moves);
 	var tower = this.getTower($(event.target));
 	var disk = this.getDisk(ui.draggable);
-	if (tower.canPlaceDisk(disk)) {
-		disk.setDraggableRevert(false);
-		tower.moveDisk(disk);
-		disk.position();
-		this.updateDraggableDisks();
-		this.checkSolved();
+	if (tower.getNum() != disk.getTower().getNum()) {
+		this.moves++;
+		$("#moves").text(this.moves);
+		if (tower.canPlaceDisk(disk)) {
+			disk.setDraggableRevert(false);
+			tower.moveDisk(disk);
+			disk.position();
+			this.updateDraggableDisks();
+			this.checkSolved();
+		}
 	}
 }
 

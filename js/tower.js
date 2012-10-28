@@ -53,7 +53,7 @@ Tower.prototype.init = function() {
 }
 
 Tower.prototype.draw = function() {
-	this.getImageElement().load(this.loadImage.bind(this));
+	this.getImageElement().load($.proxy(this.loadImage, this));
 }
 
 Tower.prototype.loadImage = function(event) {
