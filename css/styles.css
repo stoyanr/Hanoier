@@ -13,28 +13,37 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * General Public License for more details.
  */
-
-#background {
-	margin-left:auto;
-	margin-right:auto;
-	background-image:url('../img/background.jpg');
-	width:720;
-	height:300;
-}
-
-#fill {
-	width:720;
-	height:20;
-}
-
-#game {
-	width:720;
-	height:280;
-}
-
-h1 {
+ 
+#title {
 	font-size: 2em;
 	font-weight: bold;
 	margin: 10px 0px 10px;
 	text-align: center;
 }
+
+#images {
+	display: none;
+}
+
+#background {
+	margin-left: auto;
+	margin-right: auto;
+	background-image: url('../img/background.jpg');
+	width: 720px;
+	height: 300px;
+}
+
+#fill {
+	width: 720px;
+	height: 20px;
+}
+
+#game {
+	width: 720px;
+	height: 280px;
+	position: relative;
+}
+
+#footer {
+	width: 100%;
+}	

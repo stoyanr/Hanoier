@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?xml version="1.0" encoding="utf-8"?>
 <!--
  # $Id: $
@@ -16,25 +17,24 @@
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Tower of Hanoi</title>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
-		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.js"></script>
+		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
 		<script src="js/tower.js"></script>
 		<script src="js/disk.js"></script>
 		<script src="js/game.js"></script>
 		<link type="text/css" href="css/styles.css" rel="stylesheet" />
 	</head>
 	<body>
-		<h1>Tower of Hanoi</h1>
-		<div id="images" style="display: none;"></div>
+		<h1 id="title">Tower of Hanoi</h1>
+		<div id="images"></div>
 		<div id="background">
 			<div id="fill"></div>
-			<div id="game" style="position: relative;"></div>
+			<div id="game"></div>
 		</div>
 		<p/>
-		<table style="width: 100%; ">
+		<table id="footer">
 			<tr>
 				<td align="center">
 					<form id="control">
