@@ -49,7 +49,6 @@ Game.prototype.init = function() {
 	this.initDisks();
 	this.positionDisks();
 	this.updateDraggableDisks();
-	$(window).resize(this.handleResize.bind(this));
 }
 
 Game.prototype.clean = function() {
@@ -93,7 +92,7 @@ Game.prototype.initDisks = function() {
 
 Game.prototype.positionDisks = function() {
 	for (var i = 0; i < this.disks.length; i++) {
-		this.disks[i].position(this.zoom);
+		this.disks[i].position();
 	}
 }
 
@@ -101,10 +100,6 @@ Game.prototype.updateDraggableDisks = function() {
 	for (var i = 0; i < this.towers.length; i++) {
 		this.towers[i].updateDraggableDisks(); 
 	}
-}
-
-Game.prototype.handleResize = function() {
-	this.positionDisks();
 }
 
 Game.prototype.handleDrag = function(event, ui) {
@@ -117,7 +112,7 @@ Game.prototype.handleDrop = function(event, ui) {
 	if (tower.canPlaceDisk(disk)) {
 		disk.setDraggableRevert(false);
 		tower.moveDisk(disk);
-		disk.position(this.zoom);
+		disk.position();
 		this.updateDraggableDisks();
 		this.checkSolved();
 	}	 

@@ -84,7 +84,7 @@ Disk.prototype.setDraggableRevert = function(enabled) {
 	this.getElement().draggable("option", "revert", enabled);
 }
 
-Disk.prototype.position = function(zoom) {
+Disk.prototype.position = function() {
 	var elem = this.getElement();
 	var top = this.tower.calcDiskTop(this.num, this.height);
 	var left = this.tower.calcDiskLeft(this.width);
