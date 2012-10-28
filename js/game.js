@@ -119,9 +119,12 @@ Game.prototype.handleDrop = function(event, ui) {
 }
 
 Game.prototype.checkSolved = function() {
-	if (this.towers[this.towers.length - 1].getDisks().length == this.disks.length) {
-		alert(VICTORY_MESSAGE);
-		$("#startOver").click();
+	for (var i = 1; i < this.towers.length; i++) {
+		if (this.towers[i].getDisks().length == this.disks.length) {
+			alert(VICTORY_MESSAGE);
+			$("#startOver").click();
+			break;
+		}
 	}
 }
 
