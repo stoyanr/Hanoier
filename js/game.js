@@ -26,8 +26,6 @@ var DISK_HEIGHT = 36;
 var FONT_SIZE = 14;
 var FONT_FACE = "Arial";
 
-var VICTORY_MESSAGE = "Congratulations! The world is finally now going to end.";
-
 $(function() {
 	new Game().init();
 	$("#startOver").click(function() {
@@ -39,6 +37,7 @@ function Game() {
 	this.numDisks = $("#numDisks").val();
 	this.towers = [];
 	this.disks = [];
+	this.moves = 0;
 }
 
 Game.prototype.init = function() {
@@ -54,6 +53,7 @@ Game.prototype.init = function() {
 Game.prototype.clean = function() {
 	$("#game").empty();
 	$("#images").empty();
+	$("#moves").text(this.moves);
 }
 
 Game.prototype.createTowers = function() {
@@ -107,6 +107,8 @@ Game.prototype.handleDrag = function(event, ui) {
 }
 
 Game.prototype.handleDrop = function(event, ui) {
+	this.moves++;
+	$("#moves").text(this.moves);
 	var tower = this.getTower($(event.target));
 	var disk = this.getDisk(ui.draggable);
 	if (tower.canPlaceDisk(disk)) {
@@ -115,13 +117,16 @@ Game.prototype.handleDrop = function(event, ui) {
 		disk.position();
 		this.updateDraggableDisks();
 		this.checkSolved();
-	}	 
+	}
 }
 
 Game.prototype.checkSolved = function() {
-	if (this.towers[this.towers.length - 1].getDisks().length == this.disks.length) {
-		alert(VICTORY_MESSAGE);
-		$("#startOver").click();
+	for (var i = 1; i < this.towers.length; i++) {
+		if (this.towers[i].getDisks().length == this.disks.length) {
+			alert("Solved in " + this.moves + " moves.");
+			$("#startOver").click();
+			break;
+		}
 	}
 }
 
